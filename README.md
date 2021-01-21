@@ -25,7 +25,7 @@ You first need to export TSI model data from TSI Explorer
 
 * Navigate to TSI Explorer URL
 * Click on TSI Model icon
-* ![TSI Explorer](.\images\tsiexplorer1.png)
+* ![TSI Explorer](./images/tsiexplorer1.png)
 * Click on "Instances" tab and "Download instances"
 * Save "instances.json" file
 * Click on "Hierarchies" tab and "Download hierarchies"
