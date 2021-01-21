@@ -15,7 +15,7 @@ Follow steps below to
 
 * Excel 2010 or later
 
-* [Powershell]: https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1	"Powershell v5 or later"
+* [Powershell v5 or later](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)
 
 
 
