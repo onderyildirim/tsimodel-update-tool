@@ -1,0 +1,25 @@
+{
+  "put": [
+    {
+      "id": "8524fb62-1d9c-484d-a748-c0143c2fec95",
+      "name": "Functional",
+      "source": {
+        "instanceFieldNames": [
+          "Factory",
+          "Line"
+        ]
+      }
+    },
+    {
+      "id": "664ac8c9-3be3-48db-9782-cc42dc6e9e37",
+      "name": "Hierarchy2",
+      "source": {
+        "instanceFieldNames": [
+          "h2l1",
+          "h2l2",
+          "h2l3"
+        ]
+      }
+    }
+  ]
+}

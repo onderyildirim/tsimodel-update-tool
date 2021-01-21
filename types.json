@@ -1,0 +1,53 @@
+{
+  "put": [
+    {
+      "id": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
+      "name": "DefaultType",
+      "description": "Default type",
+      "variables": {
+        "EventCount": {
+          "kind": "aggregate",
+          "aggregation": {
+            "tsx": "count()"
+          }
+        }
+      }
+    },
+    {
+      "id": "0944c403-dc0b-4998-bcb6-f7a4050af637",
+      "name": "CompressorType",
+      "variables": {
+        "EventCount": {
+          "kind": "aggregate",
+          "aggregation": {
+            "tsx": "count()"
+          }
+        },
+        "Value": {
+          "kind": "numeric",
+          "value": {
+            "tsx": "$event.Value.Double"
+          },
+          "aggregation": {
+            "tsx": "avg($value)"
+          }
+        }
+      }
+    },
+    {
+      "id": "882e30eb-10d6-4c5f-a4d4-39459cd9cb48",
+      "name": "TestType",
+      "variables": {
+        "Value": {
+          "kind": "numeric",
+          "value": {
+            "tsx": "$event.Value.Double"
+          },
+          "aggregation": {
+            "tsx": "avg($value)"
+          }
+        }
+      }
+    }
+  ]
+}
