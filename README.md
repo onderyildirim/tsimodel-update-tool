@@ -33,9 +33,9 @@ You first need to export TSI model data from TSI Explorer
 * Click on "Types" tab and "Download types"
 * Save "types.json" file
 
-## 3) Export JSON metadata into Excel
+## 3) Export JSON based metadata into Excel
 
-* Run `Export-TSIModelToExcel.ps1` 
+* Run `Export-TSIModelToExcel.ps1` to export JSON document into Excel (xlsx) format. The script uses Office COM components so you need to have Excel 2010 or later installed in your workstation.
 
 USAGE: `Export-TSIModelToExcel.ps1  [OPTIONS]`
 
@@ -80,7 +80,7 @@ Modify **instance fields** (rightmost fields within worksheet after **hierarchy 
 See `TSIModel_sample.xlsx` as an example updated model file. Updated/added fields in each sheet is highlighted with blue color. An extra sheet (TimeSeriesIdMapping) is added to map each part of timeSeriesId into its labels.
 
 ## 5) Import TSI Model data from Excel into JSON
-* Run `Export-TSIModelToExcel.ps1`
+* Run `Export-TSIModelToExcel.ps1` to receive the updated model in Excel file and generate the JSON file to be uploaded to TSI. 
 
 USAGE: `Export-TSIModelToExcel.ps1  [OPTIONS]`
 
