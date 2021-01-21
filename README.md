@@ -33,7 +33,7 @@ You first need to export TSI model data from TSI Explorer
 * Click on "Types" tab and "Download types"
 * Save "types.json" file
 
-## 2) Export JSON metadata into Excel
+## 3) Export JSON metadata into Excel
 
 * Run `Export-TSIModelToExcel.ps1` 
 
@@ -49,9 +49,9 @@ OPTIONS:<br />
 `​          -ModelFile      : Path to the output Excel file, to be modified and fed into 'Import-TSIModelFromExcel'. Default is 'TSIModel.xlsx'.`<br />
 
 
-## 3) Update the model in Excel
+## 4) Update the model in Excel
 
-### 3.1) Background
+### 4.1) Background
 - Exported model in Excel includes following worksheets
   - `Instances` : Worksheet contains the list of instances, their types and names
   - `Instances (\<Hierarchy name\>)`: Excel workbook contains a separate sheet for each hierarchy that shows instances instances in that hierarchy
@@ -64,22 +64,22 @@ OPTIONS:<br />
 - **Instances  (\<Hierarchy name\>)** sheets exist for each Hierarchy. These sheets contain typeId/Name, timeSeriesID, hierarchyId/Name and any instance fields for hierarchy.
 - Import script processes sheets in order (left-to-right). If an attribute value (such as typeId or name) is null on any sheet, existing value is left unchanged. So that when you wan to update those attributes that exist in multiple sheets you can only update one and leave the rest "null".
 
-### 3.2) Update existing instances/Change instance types
+### 4.2) Update existing instances/Change instance types
 Update **typeId** or **name** columns in **Instances** sheet to update existing type definitions.
 
-### 3.3) Add/remove new instances
+### 4.3) Add/remove new instances
 Add/remove lines into **Instances** sheet. You can also add lines into any of **Instances  (\<Hierarchy name\>)** sheets to create an instance and include that in the hierarchy.
 
-### 3.4) Add/remove new instances into hierarchy
+### 4.4) Add/remove new instances into hierarchy
 Add/remove lines into/from related **Instances  (\<Hierarchy name\>)** sheets. Note that you have to repeat the same hierarchyId in each line added.
 
-### 3.5) Update instances' placement within hierarchy
+### 4.5) Update instances' placement within hierarchy
 Modify **instance fields** (rightmost fields within worksheet after **hierarchy name**) within related **Instances  (\<Hierarchy name\>)** sheet.
 
-### 3.6) Updated model file sample
+### 4.6) Updated model file sample
 See `TSIModel_sample.xlsx` as an example updated model file. Updated/added fields in each sheet is highlighted with blue color. An extra sheet (TimeSeriesIdMapping) is added to map each part of timeSeriesId into its labels.
 
-## 4) Import TSI Model data from Excel into JSON
+## 5) Import TSI Model data from Excel into JSON
 * Run `Export-TSIModelToExcel.ps1`
 
 USAGE: `Export-TSIModelToExcel.ps1  [OPTIONS]`
@@ -91,7 +91,7 @@ OPTIONS:<br />
 `​          -InstancesFile  : Instances file created to be imported back into TSI. Default is 'instances_out.json'.`<br />
 `​          -ModelFile      : Path to the input Excel file, created by 'Export-TSIModelToExcel'. Default is 'TSIModel.xlsx'.`<br />
 
-## 5) Import TSI Model from JSON into TSI
+## 6) Import TSI Model from JSON into TSI
 The final step is to import modified instances json file back into TSI
 
 You first need to export TSI model data from TSI Explorer
