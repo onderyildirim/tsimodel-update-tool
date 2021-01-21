@@ -33,7 +33,7 @@ You first need to export TSI model data from TSI Explorer
 * Click on "Types" tab and "Download types"
 * Save "types.json" file
 
-## 3) Export JSON based metadata into Excel
+## 3) Export model metadata from JSON into Excel format
 
 * Run `Export-TSIModelToExcel.ps1` to export JSON document into Excel (xlsx) format. The script uses Office COM components so you need to have Excel 2010 or later installed in your workstation.
 
