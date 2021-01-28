@@ -34,23 +34,27 @@ function PutGridlines([object]$ws)
     $ws.UsedRange.Borders($xlInsideHorizontal).LineStyle = $xlContinuous
 }
 
-function MarkExcelColumnForUpdate([object]$ws,[int]$wscol)
+function MarkExcelColumnUpdateable([object]$ws,[int]$wscol)
+{
+    $wsaddress  = $ws.Cells(1,$wscol).AddressLocal()
+    $wsaddress += ":" 
+    $wsaddress += $ws.Cells($ws.UsedRange.Rows.Count,$wscol).AddressLocal()
+
+    MarkExcelRangeUpdateable $ws.Range($wsaddress)
+}
+
+function MarkExcelRangeUpdateable([object]$range)
 {
     $xlSolid=1
     $xlAutomatic=-4105
     $xlThemeColorAccent4=8
-    $ws.Cells.Range("A1:A1").Interior.Pattern = $xlSolid
-    $wsaddress  = $ws.Cells(1,$wscol).AddressLocal()
-    $wsaddress += ":" 
-    $wsaddress += $ws.Cells($ws.UsedRange.Rows.Count,$wscol).AddressLocal()
-    $ws.Range($wsaddress).Interior.Color = 16773836
-    $ws.Range($wsaddress).Interior.Pattern = $xlSolid
-    $ws.Range($wsaddress).Interior.PatternColorIndex = $xlAutomatic
-    $ws.Range($wsaddress).Interior.ThemeColor = $xlThemeColorAccent4
-    $ws.Range($wsaddress).Interior.TintAndShade = 0.799981688894314
-    $ws.Range($wsaddress).Interior.PatternTintAndShade = 0
+    $range.Interior.Color = 16773836
+    $range.Interior.Pattern = $xlSolid
+    $range.Interior.PatternColorIndex = $xlAutomatic
+    $range.Interior.ThemeColor = $xlThemeColorAccent4
+    $range.Interior.TintAndShade = 0.799981688894314
+    $range.Interior.PatternTintAndShade = 0
 }
-
 
 
 if($Help -eq $true)
@@ -99,7 +103,7 @@ $jsonTypes       = (Get-Content -Raw -Path $TypesFile       | ConvertFrom-Json).
 
 Write-Output "Opening Excel..."
 $XL = New-Object -comobject Excel.Application
-$XL.Visible = $True
+$XL.Visible = $False
 $XL.DisplayAlerts = $false
 $wb = $XL.Workbooks.Add()
 
@@ -147,7 +151,7 @@ PutGridlines $hierarchiesWS
 Write-Output "Exporting instances..."
 $instancesWS=$wb.Worksheets.Add()
 $instancesWS.Name = "Instances"
-$instances = $jsonInstances | ForEach-Object {[pscustomobject]@{ typeid=$_.typeId; name=$_.name; id=($_.timeSeriesId -join ','); timeSeriesId=$_.timeSeriesId}}
+$instances = $jsonInstances | ForEach-Object {[pscustomobject]@{ typeid=$_.typeId; name=$_.name; id=($_.timeSeriesId -join ','); timeSeriesId=$_.timeSeriesId; instanceFields=$_.instanceFields; hierarchyIds=$_.hierarchyIds}}
 $colNum=1
 $line=1
 $instancesWS.cells.item($line,$colNum++) = "typeId"
@@ -167,6 +171,9 @@ else
 
 $instancesWS.cells.item($line,$colNum++)= "name"
 
+$lastColIndex=$colNum
+$nonHierarchyInstanceFields=@{}
+
 $line++
 foreach($in in $instances)
 {
@@ -178,20 +185,55 @@ foreach($in in $instances)
         $instancesWS.cells.item($line,$colNum++) = $t
     }
     $instancesWS.cells.item($line,$colNum++) = $in.name
+
+    $fieldList=[ordered]@{}
+    $in.instanceFields.PSObject.Properties.ForEach({ $fieldList[$_.Name] = $_.Value })
+
+    foreach($ih in $in.hierarchyIds)
+    {
+        $hfields = $jsonHierarchies| where id -eq $ih | select -ExpandProperty source | select -ExpandProperty instanceFieldNames
+        foreach($hf in $hfields)
+        {
+            $fieldList.Remove($hf)
+        }
+    }
+
+    foreach($f in $fieldList.Keys)
+    {
+        
+        if($nonHierarchyInstanceFields.ContainsKey($f))
+        {
+            $ifColNum=$nonHierarchyInstanceFields[$f]
+        }
+        else
+        {
+            $ifColNum=$lastColIndex++
+            $nonHierarchyInstanceFields[$f]=$ifColNum
+            $instancesWS.cells.item(1,$ifColNum)=$f
+        }
+
+        $instancesWS.cells.item($line,$ifColNum)=$fieldList.$f
+        MarkExcelRangeUpdateable $instancesWS.cells($line,$ifColNum)
+
+    }
+
+
     $line=$line+1
 }
 
 
 $instancesWS.Columns.AutoFit() | Out-Null
 PutGridlines $instancesWS
-MarkExcelColumnForUpdate $instancesWS 1
-MarkExcelColumnForUpdate $instancesWS 6
+MarkExcelColumnUpdateable $instancesWS 1
+MarkExcelColumnUpdateable $instancesWS 6
 
 foreach($h in $hierarchies)
 {
     Write-Output "Exporting instances for hierarchy '$($h.name)'..."
     $instancesWS=$wb.Worksheets.Add()
-    $instancesWS.Name = "Instances ($($h.name))"
+    $wsName="Instances ($($h.name))"
+    if ($wsName.Length -gt 31) {$wsName=$wsName.Substring(0, 31)}
+    $instancesWS.Name = $wsName
     $instances = $jsonInstances | ForEach-Object {[pscustomobject]@{ typeid=$_.typeId; name=$_.name; id=($_.timeSeriesId -join ','); timeSeriesId=$_.timeSeriesId; instanceFields=$_.instanceFields; hierarchyIds=$_.hierarchyIds}} | where hierarchyIds -CContains $h.id
     $colNum=1
     $line=1
@@ -242,11 +284,11 @@ foreach($h in $hierarchies)
     }
     $instancesWS.Columns.AutoFit() | Out-Null
     PutGridlines $instancesWS
-    MarkExcelColumnForUpdate $instancesWS 1
+    MarkExcelColumnUpdateable $instancesWS 1
     $i=$startOfInstanceFields
     while($i -le $instancesWS.UsedRange.Columns.Count)
     {
-        MarkExcelColumnForUpdate $instancesWS $i
+        MarkExcelColumnUpdateable $instancesWS $i
         $i=$i+1
     }
 

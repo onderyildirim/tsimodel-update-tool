@@ -42,7 +42,7 @@ if (Test-Path -Path $InstancesFile)
 
 Write-Output "Opening Excel..."
 $XL = New-Object -comobject Excel.Application
-$XL.Visible = $True
+$XL.Visible = $False
 $wb = $XL.Workbooks.Open($ModelFile, $False, $True)
 $instancesJson = [System.Collections.ArrayList][ordered]@{}
 
@@ -80,8 +80,13 @@ foreach($ws in $wb.Worksheets)
                 $currentNode=[ordered]@{'typeId'=$ws.cells.item($line,1).Value(); 'timeSeriesId'=$timeSeriesId; }
                 [void]$instancesJson.Add($currentNode)
             }
-        
+            else
+            {
+                $currentNode.typeId=$ws.cells.item($line,1).Value()
+            }
+
             if($ws.cells.item($line,$colNum).Value()){$currentNode.name=$ws.cells.item($line,$colNum).Value()}
+
             $colNum=$colNum+1
             if($ws.cells.item(1,$colNum).Value() -eq "hierarchyId")
             {
@@ -101,8 +106,29 @@ foreach($ws in $wb.Worksheets)
                 $inode=$currentNode.instanceFields
                 while($ws.cells.item(1,$colNum).Value())
                 {
-                    [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
+                    if(-not $inode.Contains($ws.cells.item(1,$colNum).Value()))
+                    {
+                        [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
+                    }
+                    else
+                    {
+                        $inode[$ws.cells.item(1,$colNum).Value()]=$ws.cells.item($line,$colNum).Value()
+                    }
                     $colNum=$colNum+1
+                }
+            }
+            else
+            {
+                $i=$colNum
+                while($ws.cells.item(1,$i).Value())
+                {
+                    $instanceFieldName=$ws.cells.item(1,$i).Value()
+                    $instanceFieldValue=$ws.cells.item($line,$i).Value()
+                    if($instanceFieldValue)
+                    {
+                        $currentNode.$instanceFieldName=$instanceFieldValue
+                    }
+                    $i=$i+1
                 }
             }
             

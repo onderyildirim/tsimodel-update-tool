@@ -1,59 +1,51 @@
 {
   "put": [
     {
-      "typeId": "0944c403-dc0b-4998-bcb6-f7a4050af637",
+      "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
       "timeSeriesId": [
         "uat124001d2387ce9b3df63d48ec5d5f378c9ab9ec1",
         "uat124001d2387ce9b3df63d48ec5d5f378c9ab9ec1_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=AlternatingBoolean"
       ],
-      "name": "Factory1/Line1/PLC3",
+      "name": "USB1GENR01:VoltageAlert",
       "hierarchyIds": [
-        "8524fb62-1d9c-484d-a748-c0143c2fec95"
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
       ],
       "instanceFields": {
-        "Factory": "Factory1",
-        "Line": "Line1"
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U1",
+        "Location": "B1",
+        "Equipment": "USB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "GE",
+        "Model": "TOPACK"
       }
     },
     {
-      "typeId": "0944c403-dc0b-4998-bcb6-f7a4050af637",
+      "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
       "timeSeriesId": [
         "uat124001d2387ce9b3df63d48ec5d5f378c9ab9ec1",
         "uat124001d2387ce9b3df63d48ec5d5f378c9ab9ec1_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=SpikeData"
       ],
-      "name": "Factory1/Line2/PLC4",
+      "name": "USB1GENR01:OilPressure",
       "hierarchyIds": [
         "8524fb62-1d9c-484d-a748-c0143c2fec95",
         "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
       ],
       "instanceFields": {
-        "Factory": "Factory1",
-        "Line": "Line2",
-        "h2l1": "l1",
-        "h2l2": "l2",
-        "h2l3": "l4"
-      }
-    },
-    {
-      "typeId": "882e30eb-10d6-4c5f-a4d4-39459cd9cb48",
-      "timeSeriesId": [
-        "uat29b2f5109d99558d6d13a264c55520eae4f79752",
-        "uat29b2f5109d99558d6d13a264c55520eae4f79752_1000",
-        "http://microsoft.com/Opc/OpcPlc/#s=DipData"
-      ],
-      "hierarchyIds": [
-        "8524fb62-1d9c-484d-a748-c0143c2fec95",
-        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
-      ],
-      "instanceFields": {
-        "Factory": "Factory2",
-        "Line": "Line2",
-        "h2l1": "l1",
-        "h2l2": "l2",
-        "h2l3": "l3",
-        "EndpointId": "$event.EndpointId"
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U1",
+        "Location": "B1",
+        "Equipment": "USB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "GE",
+        "Model": "TOPACK"
       }
     },
     {
@@ -61,8 +53,48 @@
       "timeSeriesId": [
         "uat29b2f5109d99558d6d13a264c55520eae4f79752",
         "uat29b2f5109d99558d6d13a264c55520eae4f79752_1000",
+        "http://microsoft.com/Opc/OpcPlc/#s=DipData"
+      ],
+      "name": "USB1COMP01:CutPower",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U1",
+        "Location": "B1",
+        "Equipment": "USB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "GE",
+        "Model": "DPC-2800"
+      }
+    },
+    {
+      "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
+      "timeSeriesId": [
+        "uat29b2f5109d99558d6d13a264c55520eae4f79752",
+        "uat29b2f5109d99558d6d13a264c55520eae4f79752_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=SpikeData"
-      ]
+      ],
+      "name": "USB1COMP01:OilPressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U1",
+        "Location": "B1",
+        "Equipment": "USB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "GE",
+        "Model": "DPC-2800"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -70,7 +102,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=AlternatingBoolean"
-      ]
+      ],
+      "name": "USB2GENR01:VoltageAlert",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -78,7 +126,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=BadFastUInt1"
-      ]
+      ],
+      "name": "USB2GENR01:RotationSpeed",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -86,7 +150,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=BadSlowUInt1"
-      ]
+      ],
+      "name": "USB2GENR01:Vibrations",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -94,7 +174,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=DipData"
-      ]
+      ],
+      "name": "USB2GENR01:CutPower",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -102,7 +198,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=FastUInt1"
-      ]
+      ],
+      "name": "USB2GENR01:Voltage",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -110,7 +222,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=NegativeTrendData"
-      ]
+      ],
+      "name": "USB2GENR01:OilTemperature",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -118,7 +246,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=PositiveTrendData"
-      ]
+      ],
+      "name": "USB2GENR01:Suction Pressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -126,7 +270,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=RandomSignedInt32"
-      ]
+      ],
+      "name": "USB2GENR01:Power",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -134,7 +294,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=RandomUnsignedInt32"
-      ]
+      ],
+      "name": "USB2GENR01:OilLevel",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -142,7 +318,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=SlowUInt1"
-      ]
+      ],
+      "name": "USB2GENR01:DischargePressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -150,7 +342,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=SpikeData"
-      ]
+      ],
+      "name": "USB2GENR01:OilPressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -158,7 +366,23 @@
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab",
         "uat2a9e12b05d99079b713b8db0d3fde8c4c264cbab_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=StepUp"
-      ]
+      ],
+      "name": "USB2GENR01:AirCooledStep",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "KD900"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -166,7 +390,23 @@
         "uat312c62d4e0eeeae0689cb09146b2412869a3e850",
         "uat312c62d4e0eeeae0689cb09146b2412869a3e850_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=RandomUnsignedInt32"
-      ]
+      ],
+      "name": "USB2COMP01:OilLevel",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "G30"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -174,7 +414,23 @@
         "uat312c62d4e0eeeae0689cb09146b2412869a3e850",
         "uat312c62d4e0eeeae0689cb09146b2412869a3e850_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=StepUp"
-      ]
+      ],
+      "name": "USB2COMP01:AirCooledStep",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "US",
+        "Area": "USA1",
+        "Unit": "USA1U2",
+        "Location": "B2",
+        "Equipment": "USB2COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "G30"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -182,7 +438,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=AlternatingBoolean"
-      ]
+      ],
+      "name": "UKB1GENR01:VoltageAlert",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -190,7 +462,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=BadFastUInt1"
-      ]
+      ],
+      "name": "UKB1GENR01:RotationSpeed",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -198,7 +486,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=BadSlowUInt1"
-      ]
+      ],
+      "name": "UKB1GENR01:Vibrations",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -206,7 +510,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=DipData"
-      ]
+      ],
+      "name": "UKB1GENR01:CutPower",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -214,7 +534,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=FastUInt1"
-      ]
+      ],
+      "name": "UKB1GENR01:Voltage",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -222,7 +558,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=NegativeTrendData"
-      ]
+      ],
+      "name": "UKB1GENR01:OilTemperature",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -230,7 +582,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=PositiveTrendData"
-      ]
+      ],
+      "name": "UKB1GENR01:Suction Pressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -238,7 +606,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=RandomSignedInt32"
-      ]
+      ],
+      "name": "UKB1GENR01:Power",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -246,7 +630,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=RandomUnsignedInt32"
-      ]
+      ],
+      "name": "UKB1GENR01:OilLevel",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -254,7 +654,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=SlowUInt1"
-      ]
+      ],
+      "name": "UKB1GENR01:DischargePressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -262,7 +678,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=SpikeData"
-      ]
+      ],
+      "name": "UKB1GENR01:OilPressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -270,7 +702,23 @@
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725",
         "uat4c8d6c640f3e9e14f435eb33f5ed69b88bf77725_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=StepUp"
-      ]
+      ],
+      "name": "UKB1GENR01:AirCooledStep",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1GENR01",
+        "Asset Type": "Generator",
+        "Make": "KOHL",
+        "Model": "36CCL"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -278,7 +726,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=AlternatingBoolean"
-      ]
+      ],
+      "name": "UKB1COMP01:VoltageAlert",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -286,7 +750,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=BadFastUInt1"
-      ]
+      ],
+      "name": "UKB1COMP01:RotationSpeed",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -294,7 +774,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=BadSlowUInt1"
-      ]
+      ],
+      "name": "UKB1COMP01:Vibrations",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -302,7 +798,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=DipData"
-      ]
+      ],
+      "name": "UKB1COMP01:CutPower",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -310,7 +822,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=FastUInt1"
-      ]
+      ],
+      "name": "UKB1COMP01:Voltage",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -318,7 +846,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=NegativeTrendData"
-      ]
+      ],
+      "name": "UKB1COMP01:OilTemperature",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -326,7 +870,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=PositiveTrendData"
-      ]
+      ],
+      "name": "UKB1COMP01:Suction Pressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -334,7 +894,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=RandomSignedInt32"
-      ]
+      ],
+      "name": "UKB1COMP01:Power",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -342,7 +918,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=RandomUnsignedInt32"
-      ]
+      ],
+      "name": "UKB1COMP01:OilLevel",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -350,7 +942,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=SlowUInt1"
-      ]
+      ],
+      "name": "UKB1COMP01:DischargePressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -358,7 +966,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=SpikeData"
-      ]
+      ],
+      "name": "UKB1COMP01:OilPressure",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     },
     {
       "typeId": "1be09af9-f089-4d6b-9f0b-48018b5f7393",
@@ -366,7 +990,23 @@
         "uatcf5ba2465af8de967342c7bd33144ae745b64543",
         "uatcf5ba2465af8de967342c7bd33144ae745b64543_1000",
         "http://microsoft.com/Opc/OpcPlc/#s=StepUp"
-      ]
+      ],
+      "name": "UKB1COMP01:AirCooledStep",
+      "hierarchyIds": [
+        "8524fb62-1d9c-484d-a748-c0143c2fec95",
+        "664ac8c9-3be3-48db-9782-cc42dc6e9e37"
+      ],
+      "instanceFields": {
+        "Company": "Contoso",
+        "Site": "UK",
+        "Area": "UKA1",
+        "Unit": "UKA1U1",
+        "Location": "B1",
+        "Equipment": "UKB1COMP01",
+        "Asset Type": "Compressor",
+        "Make": "VMAC",
+        "Model": "D60"
+      }
     }
   ]
 }

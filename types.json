@@ -10,12 +10,33 @@
           "aggregation": {
             "tsx": "count()"
           }
+        },
+        "Value": {
+          "kind": "numeric",
+          "value": {
+            "tsx": "coalesce($event.Value.Double, todouble($event.Value.Long))"
+          },
+          "aggregation": {
+            "tsx": "avg($value)"
+          }
+        },
+        "BoolValue": {
+          "kind": "numeric",
+          "value": {
+            "tsx": "todouble($event['Value'].Bool)"
+          },
+          "aggregation": {
+            "tsx": "left($value)"
+          },
+          "interpolation": {
+            "kind": "step"
+          }
         }
       }
     },
     {
       "id": "0944c403-dc0b-4998-bcb6-f7a4050af637",
-      "name": "CompressorType",
+      "name": "DataPointNumeric",
       "variables": {
         "EventCount": {
           "kind": "aggregate",
@@ -26,7 +47,7 @@
         "Value": {
           "kind": "numeric",
           "value": {
-            "tsx": "$event.Value.Double"
+            "tsx": "coalesce($event.Value.Double, todouble($event.Value.Long))"
           },
           "aggregation": {
             "tsx": "avg($value)"
@@ -36,15 +57,24 @@
     },
     {
       "id": "882e30eb-10d6-4c5f-a4d4-39459cd9cb48",
-      "name": "TestType",
+      "name": "DataPointBool",
       "variables": {
+        "EventCount": {
+          "kind": "aggregate",
+          "aggregation": {
+            "tsx": "count()"
+          }
+        },
         "Value": {
           "kind": "numeric",
           "value": {
-            "tsx": "$event.Value.Double"
+            "tsx": "tolong($event.Value.Bool)"
           },
           "aggregation": {
-            "tsx": "avg($value)"
+            "tsx": "left($value)"
+          },
+          "interpolation": {
+            "kind": "step"
           }
         }
       }
