@@ -1,6 +1,6 @@
 # Updating Time Series Insights model for Industrial IoT
 
-See `TSIModel-iiot-sample.xlsx` as an example updated model file for instances created from [Azure Industrial IoT Platform](https://github.com/Azure/Industrial-IoT). Updated/added cells in each worksheet is highlighted with yellow background color. An extra worksheet (Mappings) is added to help mapping id codes in original data to descriptive names.
+See [TSIModel-iiot-sample.xlsx](./TSIModel-iiot-sample.xlsx) as an example updated model file for instances created from [Azure Industrial IoT Platform](https://github.com/Azure/Industrial-IoT). Updated/added cells in each worksheet is highlighted with yellow background color. An extra worksheet (Mappings) is added to help mapping id codes in original data to descriptive names.
 
 In an industrial IoT scenario where data is originated from OPC UA servers, you may end up with coded values for data source names and tags. [Azure Industrial IoT Platform](https://github.com/Azure/Industrial-IoT) uses 3 fields as Time Series ID: **PublisherId, DataSetWriterId, NodeId**. From those 3 attributes, our aim is to produce consistent Equipment/DataPoint mappings we can use in naming instances and in hierarchies.
 
