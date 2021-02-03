@@ -1,4 +1,4 @@
-# How to model an industrial asset framework in Time Series Insights
+# How to update Time Series Insights model to create an industrial asset framework
 
 Asset Framework is a crucial component of any industrial IoT infrastructure. When you collect your IoT data into TSI, you will need a proper AF model to be able to drive insights from it.
 
@@ -11,7 +11,7 @@ Two scripts are provided for this purpose:
 
 # Usage
 
-Follow steps below for a complete cycle of updating your model in TSI
+Follow steps below for a complete cycle of updating your model in TSI.
 
 ## 1) Requirements
 
@@ -92,7 +92,7 @@ The tool will not create the instance field in json document if its value is nul
 ### 4.9) Duplicate instance fields
 If an instance field is used in two hierarchies the it will appear in two worksheets. Since you cannot have two instance fields with the same name in time series instance, when converting into JSON, Tool will process worksheets from left to right and use the last non null value it finds for an instance field.
 
-### 4.10) Model file sample for IIOT
+### 4.10) Update model file to create the asset framework
 For an example of updating the model file from your existing asset frameworkin an industrial IoT scenario, see [Updating Time Series Insights model for Industrial IoT](./iiot-mappings.md)
 
 ## 5) Import TSI Model data from Excel into JSON
