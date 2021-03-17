@@ -66,11 +66,13 @@ if($Help -eq $true)
     Write-Output "   -HierarchiesFile: Hierarchies file exported from TSI. Default is 'hierarchies.json'."
     Write-Output "   -TypesFile      : Types file exported from TSI. Default is 'types.json'."
     Write-Output "   -ModelFile      : Path to the output Excel file, to be modified and fed into 'Import-TSIModelFromExcel'. Default is 'TSIModel.xlsx'."
+    Write-Output ""
+    Write-Output "$($MyInvocation.MyCommand.Name) -ModelFile `".\TSIModel.xlsx`" -InstancesFile `".\instances.json`" -HierarchiesFile `".\hierarchies.json`" -TypesFile `".\types.json`""
     Exit 0
 }
 
 $path=Split-Path -Path $ModelFile
-if(([string]::IsNullOrEmpty($path)) -or ($path=".")){$ModelFile=$PSScriptRoot+"\"+(Split-Path -Path $ModelFile -Leaf)}
+if(([string]::IsNullOrEmpty($path)) -or ($path -eq ".")){$ModelFile=$PSScriptRoot+"\"+(Split-Path -Path $ModelFile -Leaf)}
 
 if (-not (Test-Path -Path $InstancesFile))
 {
@@ -225,7 +227,7 @@ foreach($in in $instances)
 $instancesWS.Columns.AutoFit() | Out-Null
 PutGridlines $instancesWS
 MarkExcelColumnUpdateable $instancesWS 1
-MarkExcelColumnUpdateable $instancesWS 6
+MarkExcelColumnUpdateable $instancesWS $($lastColIndex-1)
 
 foreach($h in $hierarchies)
 {
