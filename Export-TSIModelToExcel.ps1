@@ -221,6 +221,8 @@ foreach($in in $instances)
 
 
     $line=$line+1
+    $pct =[int] ((($line-2)/$instances.Count)*100)
+    Write-Progress -Activity "Exporting instances..." -Status "$pct% ($($line-2)/$($instances.Count)) Complete:" -PercentComplete $pct
 }
 
 
@@ -279,10 +281,16 @@ foreach($h in $hierarchies)
 
         foreach($t in $h.instanceFieldNames)
         {
-            $instancesWS.cells.item($line,$colNum++) = $in.instanceFields.PSObject.Properties[$t].Value
+            if (($in.instanceFields) -and ($in.instanceFields.PSObject.Properties))
+            {
+                $instancesWS.cells.item($line,$colNum++) = $in.instanceFields.PSObject.Properties[$t].Value
+            }
         }
 
         $line=$line+1
+        $pct =[int] ((($line-2)/$instances.Count)*100)
+        Write-Progress -Activity "Exporting instances for hierarchy '$($h.name)'..." -Status "$pct% ($($line-2)/$($instances.Count)) Complete:" -PercentComplete $pct
+
     }
     $instancesWS.Columns.AutoFit() | Out-Null
     PutGridlines $instancesWS

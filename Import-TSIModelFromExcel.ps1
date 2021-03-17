@@ -57,6 +57,7 @@ foreach($ws in $wb.Worksheets)
 
         $line=2
         $tsiIdStartColumn=3
+        $wsRowCount = $ws.UsedRange.Rows.Count
 
         While($ws.cells.item($line,$tsiIdStartColumn).Value())
         {
@@ -77,7 +78,7 @@ foreach($ws in $wb.Worksheets)
                     break
                 }
             }
-            $currentNode = $instancesJson | where {(Compare-Object $_.timeSeriesId $timeSeriesId -PassThru -ExcludeDifferent -IncludeEqual).Count -eq $tsidNumCols}
+            $currentNode = $instancesJson | where {(Compare-Object $_.timeSeriesId $timeSeriesId -ExcludeDifferent -IncludeEqual).Count -eq $tsidNumCols}
             if (-not $currentNode)
             {
                 $currentNode=[ordered]@{'typeId'=$ws.cells.item($line,1).Value(); 'timeSeriesId'=$timeSeriesId; }
@@ -85,10 +86,7 @@ foreach($ws in $wb.Worksheets)
             }
             else
             {
-                if ($ws.cells.item($line,1).Value())
-                {
-                    $currentNode.typeId=$ws.cells.item($line,1).Value()
-                }
+                $currentNode.typeId=$ws.cells.item($line,1).Value()
             }
 
             if($ws.cells.item($line,$colNum).Value()){$currentNode.name=$ws.cells.item($line,$colNum).Value()}
@@ -105,10 +103,6 @@ foreach($ws in $wb.Worksheets)
                 $colNum=$colNum+1
                 $colNum=$colNum+1
 
-            }
-
-            if($ws.cells.item(1,$colNum).Value())
-            {
                 if(-not $currentNode.instanceFields)
                 {
                     $currentNode.instanceFields=[ordered]@{}
@@ -116,25 +110,35 @@ foreach($ws in $wb.Worksheets)
                 $inode=$currentNode.instanceFields
                 while($ws.cells.item(1,$colNum).Value())
                 {
-                    $instanceFieldName=$ws.cells.item(1,$colNum).Value()
-                    $instanceFieldValue=$ws.cells.item($line,$colNum).Value()
-
-                    if ($instanceFieldValue)
+                    if(-not $inode.Contains($ws.cells.item(1,$colNum).Value()))
                     {
-                        if(-not $inode.Contains($instanceFieldName))
-                        {
-                            [void]$inode.Add($instanceFieldName,$instanceFieldValue)
-                        }
-                        else
-                        {
-                            $inode[$instanceFieldName]=$instanceFieldValue
-                        }
+                        [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
+                    }
+                    else
+                    {
+                        $inode[$ws.cells.item(1,$colNum).Value()]=$ws.cells.item($line,$colNum).Value()
                     }
                     $colNum=$colNum+1
                 }
             }
-
-          $line=$line+1
+            else
+            {
+                $i=$colNum
+                while($ws.cells.item(1,$i).Value())
+                {
+                    $instanceFieldName=$ws.cells.item(1,$i).Value()
+                    $instanceFieldValue=$ws.cells.item($line,$i).Value()
+                    if($instanceFieldValue)
+                    {
+                        $currentNode.$instanceFieldName=$instanceFieldValue
+                    }
+                    $i=$i+1
+                }
+            }
+            
+            $line=$line+1
+            $pct =[int] ((($line-2)/$wsRowCount)*100)
+            Write-Progress -Activity "Processing Sheet: $($ws.name)..." -Status "$pct% ($($line-2)/$wsRowCount) Complete:" -PercentComplete $pct
         }
     } 
 }
@@ -143,7 +147,7 @@ Write-Output "Writing to file: $InstancesFile..."
 $instancesJsonTop = [System.Collections.ArrayList][ordered]@{}
 $instancesJsonTop=[ordered]@{'put'=$instancesJson}
 $instancesJsonTop | ConvertTo-Json -depth 100 | Out-File $InstancesFile 
-#$instancesJson | ForEach-Object {$_.timeSeriesId}  
+$instancesJson.GetEnumerator() | Export-Csv -NoTypeInformation -Path "C:\Users\ondery\OneDrive - Microsoft\Business\FY21\TCCC\instances_out.csv"
 
 Write-Output "Cleanup..."
 $wb.Close($false)
