@@ -71,8 +71,6 @@ if($Help -eq $true)
     Exit 0
 }
 
-$path=Split-Path -Path $ModelFile
-if(([string]::IsNullOrEmpty($path)) -or ($path -eq ".")){$ModelFile=$PSScriptRoot+"\"+(Split-Path -Path $ModelFile -Leaf)}
 
 if (-not (Test-Path -Path $InstancesFile))
 {

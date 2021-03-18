@@ -147,7 +147,7 @@ Write-Output "Writing to file: $InstancesFile..."
 $instancesJsonTop = [System.Collections.ArrayList][ordered]@{}
 $instancesJsonTop=[ordered]@{'put'=$instancesJson}
 $instancesJsonTop | ConvertTo-Json -depth 100 | Out-File $InstancesFile 
-$instancesJson.GetEnumerator() | Export-Csv -NoTypeInformation -Path "C:\Users\ondery\OneDrive - Microsoft\Business\FY21\TCCC\instances_out.csv"
+
 
 Write-Output "Cleanup..."
 $wb.Close($false)
