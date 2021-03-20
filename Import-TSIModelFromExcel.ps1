@@ -48,7 +48,6 @@ $XL.Visible = $False
 $wb = $XL.Workbooks.Open($ModelFile, $False, $True)
 $instancesJson = [System.Collections.ArrayList][ordered]@{}
 
-
 foreach($ws in $wb.Worksheets)
 {
     if ($ws.name -like "Instances*")
@@ -78,7 +77,7 @@ foreach($ws in $wb.Worksheets)
                     break
                 }
             }
-            $currentNode = $instancesJson | where {(Compare-Object $_.timeSeriesId $timeSeriesId -ExcludeDifferent -IncludeEqual).Count -eq $tsidNumCols}
+            $currentNode = $instancesJson | where {(Compare-Object $_.timeSeriesId $timeSeriesId -ExcludeDifferent -IncludeEqual).InputObject.Count -eq $tsidNumCols}
             if (-not $currentNode)
             {
                 $currentNode=[ordered]@{'typeId'=$ws.cells.item($line,1).Value(); 'timeSeriesId'=$timeSeriesId; }
@@ -86,53 +85,63 @@ foreach($ws in $wb.Worksheets)
             }
             else
             {
-                $currentNode.typeId=$ws.cells.item($line,1).Value()
+                if ($ws.cells.item($line,1).Value())
+                {
+                    $currentNode.typeId=$ws.cells.item($line,1).Value()
+                }
             }
 
             if($ws.cells.item($line,$colNum).Value()){$currentNode.name=$ws.cells.item($line,$colNum).Value()}
 
-            $colNum=$colNum+1
-            if($ws.cells.item(1,$colNum).Value() -eq "hierarchyId")
+            if($ws.cells.item(1,$colNum).Value())
             {
-                if(-not $currentNode.hierarchyIds)
-                {
-                    $currentNode.hierarchyIds=[System.Collections.ArrayList]@()
-                }
-                $hnode=$currentNode.hierarchyIds
-                [void]$hnode.Add($ws.cells.item($line,$colNum).Value())
                 $colNum=$colNum+1
-                $colNum=$colNum+1
-
-                if(-not $currentNode.instanceFields)
+                if($ws.cells.item(1,$colNum).Value() -eq "hierarchyId")
                 {
-                    $currentNode.instanceFields=[ordered]@{}
-                }
-                $inode=$currentNode.instanceFields
-                while($ws.cells.item(1,$colNum).Value())
-                {
-                    if(-not $inode.Contains($ws.cells.item(1,$colNum).Value()))
+                    if(-not $currentNode.hierarchyIds)
                     {
-                        [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
+                        $currentNode.hierarchyIds=[System.Collections.ArrayList]@()
                     }
-                    else
-                    {
-                        $inode[$ws.cells.item(1,$colNum).Value()]=$ws.cells.item($line,$colNum).Value()
-                    }
+                    $hnode=$currentNode.hierarchyIds
+                    [void]$hnode.Add($ws.cells.item($line,$colNum).Value())
                     $colNum=$colNum+1
-                }
-            }
-            else
-            {
-                $i=$colNum
-                while($ws.cells.item(1,$i).Value())
-                {
-                    $instanceFieldName=$ws.cells.item(1,$i).Value()
-                    $instanceFieldValue=$ws.cells.item($line,$i).Value()
-                    if($instanceFieldValue)
+                    $colNum=$colNum+1
+
+                    if(-not $currentNode.instanceFields)
                     {
-                        $currentNode.$instanceFieldName=$instanceFieldValue
+                        $currentNode.instanceFields=[ordered]@{}
                     }
-                    $i=$i+1
+                    $inode=$currentNode.instanceFields
+                    while($ws.cells.item(1,$colNum).Value())
+                    {
+                        if(-not $inode.Contains($ws.cells.item(1,$colNum).Value()))
+                        {
+                            [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
+                        }
+                        else
+                        {
+                            $inode[$ws.cells.item(1,$colNum).Value()]=$ws.cells.item($line,$colNum).Value()
+                        }
+                        $colNum=$colNum+1
+                    }
+                }
+                else
+                {
+                    $i=$colNum
+                    if((-not $currentNode.instanceFields) -and ($ws.cells.item(1,$i).Value()))
+                    {
+                        $currentNode.instanceFields=[ordered]@{}
+                    }
+                    while($ws.cells.item(1,$i).Value())
+                    {
+                        $instanceFieldName=$ws.cells.item(1,$i).Value()
+                        $instanceFieldValue=$ws.cells.item($line,$i).Value()
+                        if($instanceFieldValue)
+                        {
+                            $currentNode.instanceFields.$instanceFieldName=$instanceFieldValue
+                        }
+                        $i=$i+1
+                    }
                 }
             }
             
