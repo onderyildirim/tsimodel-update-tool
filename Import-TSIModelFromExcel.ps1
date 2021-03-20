@@ -98,31 +98,38 @@ foreach($ws in $wb.Worksheets)
                 $colNum=$colNum+1
                 if($ws.cells.item(1,$colNum).Value() -eq "hierarchyId")
                 {
-                    if(-not $currentNode.hierarchyIds)
+                    if($ws.cells.item(1,$colNum).Value())
                     {
-                        $currentNode.hierarchyIds=[System.Collections.ArrayList]@()
-                    }
-                    $hnode=$currentNode.hierarchyIds
-                    [void]$hnode.Add($ws.cells.item($line,$colNum).Value())
-                    $colNum=$colNum+1
-                    $colNum=$colNum+1
-
-                    if(-not $currentNode.instanceFields)
-                    {
-                        $currentNode.instanceFields=[ordered]@{}
-                    }
-                    $inode=$currentNode.instanceFields
-                    while($ws.cells.item(1,$colNum).Value())
-                    {
-                        if(-not $inode.Contains($ws.cells.item(1,$colNum).Value()))
+                        if(-not $currentNode.hierarchyIds)
                         {
-                            [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
+                            $currentNode.hierarchyIds=[System.Collections.ArrayList]@()
                         }
-                        else
-                        {
-                            $inode[$ws.cells.item(1,$colNum).Value()]=$ws.cells.item($line,$colNum).Value()
-                        }
+                        $hnode=$currentNode.hierarchyIds
+                        [void]$hnode.Add($ws.cells.item($line,$colNum).Value())
                         $colNum=$colNum+1
+                        $colNum=$colNum+1
+
+                        if(-not $currentNode.instanceFields)
+                        {
+                            $currentNode.instanceFields=[ordered]@{}
+                        }
+                        $inode=$currentNode.instanceFields
+                        while($ws.cells.item(1,$colNum).Value())
+                        {
+                            if(-not $inode.Contains($ws.cells.item(1,$colNum).Value()))
+                            {
+                                [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
+                            }
+                            else
+                            {
+                                $inode[$ws.cells.item(1,$colNum).Value()]=$ws.cells.item($line,$colNum).Value()
+                            }
+                            $colNum=$colNum+1
+                        }
+                    }
+                    else
+                    {
+                        Write-Host "[warn ] Worksheet: $($ws.name), Line: $line : hierarchyId is empty. Skipped record." -ForegroundColor Yellow
                     }
                 }
                 else
