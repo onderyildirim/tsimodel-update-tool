@@ -58,6 +58,7 @@ foreach($ws in $wb.Worksheets)
         $tsiIdStartColumn=3
         $wsRowCount = $ws.UsedRange.Rows.Count
 
+
         While($ws.cells.item($line,$tsiIdStartColumn).Value())
         {
             $colNum=$tsiIdStartColumn
@@ -116,13 +117,16 @@ foreach($ws in $wb.Worksheets)
                         $inode=$currentNode.instanceFields
                         while($ws.cells.item(1,$colNum).Value())
                         {
-                            if(-not $inode.Contains($ws.cells.item(1,$colNum).Value()))
+                            if ($ws.cells.item($line,$colNum).Value())
                             {
-                                [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
-                            }
-                            else
-                            {
-                                $inode[$ws.cells.item(1,$colNum).Value()]=$ws.cells.item($line,$colNum).Value()
+                                if(-not $inode.Contains($ws.cells.item(1,$colNum).Value()))
+                                {
+                                    [void]$inode.Add($ws.cells.item(1,$colNum).Value(),$ws.cells.item($line,$colNum).Value())
+                                }
+                                else
+                                {
+                                    $inode[$ws.cells.item(1,$colNum).Value()]=$ws.cells.item($line,$colNum).Value()
+                                }
                             }
                             $colNum=$colNum+1
                         }
