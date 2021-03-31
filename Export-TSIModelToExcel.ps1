@@ -71,6 +71,9 @@ if($Help -eq $true)
     Exit 0
 }
 
+$path=Split-Path -Path $ModelFile
+if(([string]::IsNullOrEmpty($path)) -or ($path -eq ".")){$ModelFile=$PSScriptRoot+"\"+(Split-Path -Path $ModelFile -Leaf)}
+
 
 if (-not (Test-Path -Path $InstancesFile))
 {
@@ -170,6 +173,7 @@ else
 }
 
 $instancesWS.cells.item($line,$colNum++)= "name"
+$instancesWS.cells.item($line,$colNum++)= "description"
 
 $lastColIndex=$colNum
 $nonHierarchyInstanceFields=@{}
@@ -185,6 +189,7 @@ foreach($in in $instances)
         $instancesWS.cells.item($line,$colNum++) = $t
     }
     $instancesWS.cells.item($line,$colNum++) = $in.name
+    $instancesWS.cells.item($line,$colNum++) = $in.description
 
     $fieldList=[ordered]@{}
     $in.instanceFields.PSObject.Properties.ForEach({ $fieldList[$_.Name] = $_.Value })
