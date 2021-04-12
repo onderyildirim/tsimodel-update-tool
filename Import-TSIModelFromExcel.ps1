@@ -93,8 +93,12 @@ foreach($ws in $wb.Worksheets)
             }
 
             if($ws.cells.item($line,$colNum).Value()){$currentNode.name=$ws.cells.item($line,$colNum).Value()}
-            $colNum=$colNum+1
-            if($ws.cells.item($line,$colNum).Value()){$currentNode.description=$ws.cells.item($line,$colNum).Value()}
+
+            if ($ws.name -eq "Instances")
+            {
+                $colNum=$colNum+1
+                if($ws.cells.item($line,$colNum).Value()){$currentNode.description=$ws.cells.item($line,$colNum).Value()}
+            }
 
             if($ws.cells.item(1,$colNum).Value())
             {
