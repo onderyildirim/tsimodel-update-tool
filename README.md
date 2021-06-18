@@ -98,9 +98,9 @@ For an example of updating the model file from your existing asset frameworkin a
 ## 5) Import TSI Model data from Excel into JSON
 * Run `Export-TSIModelToExcel.ps1` to receive the updated model in Excel file and generate the JSON file to be uploaded to TSI. 
 
-USAGE: `Export-TSIModelToExcel.ps1  [OPTIONS]`
+USAGE: `Import-TSIModelFromExcel.ps1  [OPTIONS]`
 
-SAMPLE: `Export-TSIModelToExcel.ps1  -InstancesFile instances_out.json -ModelFile TSIModel.xlsx`
+SAMPLE: `Import-TSIModelFromExcel.ps1  -InstancesFile instances_out.json -ModelFile TSIModel.xlsx`
 
 OPTIONS:<br />
 `​          -h, Help        : Display this screen.`<br />

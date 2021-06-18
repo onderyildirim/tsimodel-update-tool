@@ -56,6 +56,15 @@ function MarkExcelRangeUpdateable([object]$range)
     $range.Interior.PatternTintAndShade = 0
 }
 
+function FormatDuration()
+{
+Param ([TimeSpan]$TimeSpan)
+    $TimeSpanStr = ""
+    if($TimeSpan.Days>0) {$TimeSpanStr = [String]::Format("{0} days ",$TimeSpan.Days)}
+    $TimeSpanStr = [String]::Format("{0:hh}:{0:mm}:{0:ss}",$TimeSpan)
+    return $TimeSpanStr
+}
+
 
 if($Help -eq $true)
 {
@@ -179,6 +188,7 @@ $lastColIndex=$colNum
 $nonHierarchyInstanceFields=@{}
 
 $line++
+$timeStarted= Get-Date
 foreach($in in $instances)
 {
     $colNum=1
@@ -222,10 +232,24 @@ foreach($in in $instances)
 
     }
 
+        $line=$line+1
 
-    $line=$line+1
-    $pct =[int] ((($line-2)/$instances.Count)*100)
-    Write-Progress -Activity "Exporting instances..." -Status "$pct% ($($line-2)/$($instances.Count)) Complete:" -PercentComplete $pct
+        $completeratio = (($line-2)/[double]$instances.Count)
+        $pct =[int] ($completeratio*100)
+        $timeElapsed = New-TimeSpan -Start $timeStarted -End $(Get-Date)
+        $estRemainingStr = ""
+
+        if ($completeratio -gt 0.0)
+        {
+            $estRemaining = New-TimeSpan -Seconds $($timeElapsed.TotalSeconds/$completeratio)
+            if($estRemaining.TotalDays>0){$estRemainingStr += "{00:dd} days" -f $estRemaining }
+            $estRemainingStr = "{0:hh}:{0:mm}:{0:ss}" -f $estRemaining 
+
+            $totaltime = $estRemaining+$timeElapsed
+        }
+
+        Write-Progress -Activity "Exporting instances ..." -Status ("$pct% ($($line-2)/$($instances.Count)) Complete. Time Elapsed:{0:hh}:{0:mm}:{0:ss} Time Remaining:{1:hh}:{1:mm}:{1:ss} Total Time: {2:hh}:{2:mm}:{2:ss}" -f $timeElapsed, $estRemaining, $totaltime) -PercentComplete $pct
+
 }
 
 
@@ -236,6 +260,7 @@ MarkExcelColumnUpdateable $instancesWS $($lastColIndex-1)
 
 foreach($h in $hierarchies)
 {
+    $timeStarted= Get-Date
     Write-Output "Exporting instances for hierarchy '$($h.name)'..."
     $instancesWS=$wb.Worksheets.Add()
     $wsName="Instances ($($h.name))"
@@ -291,9 +316,25 @@ foreach($h in $hierarchies)
         }
 
         $line=$line+1
-        $pct =[int] ((($line-2)/$instances.Count)*100)
-        Write-Progress -Activity "Exporting instances for hierarchy '$($h.name)'..." -Status "$pct% ($($line-2)/$($instances.Count)) Complete:" -PercentComplete $pct
 
+        $currentItem=$line
+        $totalItems=$instances.Count
+        if (($currentItem -le $totalItems) -and ($totalItems -le 1000) -or (($totalItems -gt 1000) -and ($currentItem%100 -eq 0)))
+        {
+            $completeratio = [double](($currentItem)/[double]$totalItems)
+            $pct =[int] ($completeratio*100)
+            if($pct -gt 100){$pct=100}
+            $timeElapsed = New-TimeSpan -Start $timeStarted -End $(Get-Date)
+            $totalTime = New-TimeSpan -Seconds ([Int64]([double]$timeElapsed.TotalSeconds * [double]$totalItems / [double]($currentItem)))
+            $timeRemaining=$totalTime - $timeElapsed
+
+            $timeRemainingStr = FormatDuration -TimeSpan $timeRemaining
+            $timeElapsedStr = FormatDuration -TimeSpan $timeElapsed
+            $totalTimeStr = FormatDuration -TimeSpan $totalTime
+
+            $statusMsg=[String]::Format("{0}% ({1}/{2}) Complete. Time Elapsed:{3} Time Remaining:{4} Total Time:{5}", $pct,$currentItem,$totalItems,$timeElapsedStr, $timeRemainingStr, $totalTimeStr)
+            Write-Progress -Activity "Exporting instances for hierarchy '$($h.name)'..." -Status $statusMsg -PercentComplete $pct
+        }
     }
     $instancesWS.Columns.AutoFit() | Out-Null
     PutGridlines $instancesWS

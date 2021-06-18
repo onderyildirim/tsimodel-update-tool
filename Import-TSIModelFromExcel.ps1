@@ -11,6 +11,15 @@ Param(
     [string]$InstancesFile=".\instances_out.json"
     )
 
+function FormatDuration()
+{
+Param ([TimeSpan]$TimeSpan)
+    $TimeSpanStr = ""
+    if($TimeSpan.Days>0) {$TimeSpanStr = [String]::Format("{0} days ",$TimeSpan.Days)}
+    $TimeSpanStr = [String]::Format("{0:hh}:{0:mm}:{0:ss}",$TimeSpan)
+    return $TimeSpanStr
+}
+
 if($Help -eq $true)
 {
     Write-Output "Usage: $($MyInvocation.MyCommand.Name) [OPTIONS]"
@@ -48,8 +57,10 @@ $XL.Visible = $False
 $wb = $XL.Workbooks.Open($ModelFile, $False, $True)
 $instancesJson = [System.Collections.ArrayList][ordered]@{}
 
+
 foreach($ws in $wb.Worksheets)
 {
+    $timeStarted= Get-Date
     if ($ws.name -like "Instances*")
     {
         Write-Output "Processing Sheet: $($ws.name)..."
@@ -163,9 +174,28 @@ foreach($ws in $wb.Worksheets)
             }
             
             $line=$line+1
-            $pct =[int] ((($line-2)/$wsRowCount)*100)
-            Write-Progress -Activity "Processing Sheet: $($ws.name)..." -Status "$pct% ($($line-2)/$wsRowCount) Complete:" -PercentComplete $pct
+
+            $currentItem=$line
+            $totalItems=$wsRowCount
+            if (($currentItem -le $totalItems) -and ($totalItems -le 1000) -or (($totalItems -gt 1000) -and ($currentItem%100 -eq 0)))
+            {
+                $completeratio = [double](($currentItem)/[double]$totalItems)
+                $pct =[int] ($completeratio*100)
+                if($pct -gt 100){$pct=100}
+                $timeElapsed = New-TimeSpan -Start $timeStarted -End $(Get-Date)
+                $totalTime = New-TimeSpan -Seconds ([Int64]([double]$timeElapsed.TotalSeconds * [double]$totalItems / [double]($currentItem)))
+                $timeRemaining=$totalTime - $timeElapsed
+
+                $timeRemainingStr = FormatDuration -TimeSpan $timeRemaining
+                $timeElapsedStr = FormatDuration -TimeSpan $timeElapsed
+                $totalTimeStr = FormatDuration -TimeSpan $totalTime
+
+                $statusMsg=[String]::Format("{0}% ({1}/{2}) Complete. Time Elapsed:{3} Time Remaining:{4} Total Time:{5}", $pct,$currentItem,$totalItems,$timeElapsedStr, $timeRemainingStr, $totalTimeStr)
+                Write-Progress -Activity "Processing Sheet: $($ws.name)..." -Status $statusMsg -PercentComplete $pct
+            }
+
         }
+
     } 
 }
 
